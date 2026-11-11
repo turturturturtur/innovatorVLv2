@@ -1,0 +1,26 @@
+# Local secrets and machine configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+.idea/
+.vscode/
+
+# Generated files and local diagnostics
+node_modules/
+_site/
+dist/
+coverage/
+playwright-report/
+test-results/
+__pycache__/
+*.pyc
+*.log
+
+# Website repository: no model artifacts
+*.safetensors
+*.ckpt
+*.pt
+*.pth

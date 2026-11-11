@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#060609" />
+    <meta name="description" content="Innovator multimodal AI for science: explore scientific understanding, cross-disciplinary analysis, and benchmark comparisons." />
+    <title>INNOVATOR · Scientific Multimodal AI</title>
+    <script>
+      // Set the opening state before the first paint; always fail open.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !location.hash) {
+        document.documentElement.classList.add("intro-pending");
+        window.innovatorIntroTimeout = setTimeout(() => {
+          document.documentElement.classList.remove("intro-pending");
+          document.dispatchEvent(new Event("innovator:intro-fallback"));
+          document.dispatchEvent(new Event("innovator:intro-reveal"));
+        }, 5000);
+      }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="data.js" defer></script>
+    <script src="particles.js" defer></script>
+    <script src="intro.js" defer></script>
+    <script src="case-player.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+      <canvas id="intro-canvas" aria-hidden="true"></canvas>
+    </div>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to main content</a>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#" aria-label="Innovator home">
+          <svg class="brand-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3 32 11v14L18 33 4 25V11L18 3Z" stroke="currentColor" stroke-width="1.3"/><path d="m18 3 0 30M4 11l28 14M32 11 4 25" stroke="currentColor" stroke-width="1.3"/><circle cx="18" cy="18" r="4" fill="currentColor"/></svg>
+          <span>INNOVATOR<span class="brand-dot">.</span></span>
+        </a>
+        <nav class="desktop-nav" aria-label="Main navigation" data-i18n-aria="mainNav">
+          <a href="#overview" data-i18n="navOverview">Overview</a>
+          <a href="#benchmarks" data-i18n="navBenchmarks">Benchmarks</a>
+          <a href="#demos" data-i18n="navDemos">Recorded cases</a>
+        </nav>
+        <div class="header-actions">
+          <button class="language-button" id="language-toggle" type="button" aria-label="切换至中文">中文 <span aria-hidden="true">↗</span></button>
+          <a class="header-cta" href="#demos"><span data-i18n="explore">Explore demos</span><span aria-hidden="true">↗</span></a>
+          <button class="menu-button" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation" data-i18n-aria="openMenu" type="button"><span></span><span></span></button>
+        </div>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-i18n-aria="mobileNav" hidden>
+        <a href="#overview" data-i18n="navOverview">Overview</a><a href="#benchmarks" data-i18n="navBenchmarks">Benchmarks</a><a href="#demos" data-i18n="navDemos">Recorded cases</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-ambient" aria-hidden="true"></div>
+        <div class="hero-visual" aria-hidden="true"><canvas id="particle-canvas"></canvas></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="hero-wordmark">INNOVATOR</p>
+            <h1 id="hero-title"><span data-i18n="heroLine1">Intelligence,</span><br /><span class="gradient-text" data-i18n="heroLine2">beyond the known.</span></h1>
+            <p class="hero-description" data-i18n="heroDescription">Connecting vision, language and scientific knowledge.<br />From understanding a structure to exploring the unknown.</p>
+            <div class="hero-buttons">
+              <a class="button button-primary" href="#demos"><span data-i18n="exploreCases">Explore recorded cases</span><span aria-hidden="true">↗</span></a>
+              <a class="button button-secondary" href="#benchmarks"><span data-i18n="viewResults">View benchmarks</span><span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="hero-resource-links" aria-label="Paper and model resources" data-i18n-aria="resourceLinks">
+              <a class="button button-secondary resource-link" id="paper-link" role="link" aria-disabled="true" target="_blank" rel="noopener noreferrer"><span>Paper</span><span class="resource-status" data-i18n="resourceSoon">Coming soon</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+              <a class="button button-secondary resource-link" id="hugging-face-link" role="link" aria-disabled="true" target="_blank" rel="noopener noreferrer"><span>Hugging Face</span><span class="resource-status" data-i18n="resourceSoon">Coming soon</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-note"><span class="tiny-cross" aria-hidden="true">+</span><span>INTELLIGENCE. BEYOND THE KNOWN.</span></div>
+          </div>
+          <div class="visual-caption" aria-hidden="true"><span class="crosshair">+</span><span>LATENT SPACE<br /><span class="muted">SCIENTIFIC INTELLIGENCE / V.01</span></span></div>
+          <div class="visual-coordinate" aria-hidden="true"><span>θ 23.5°</span><span>φ 137.5°</span><span class="coordinate-line"></span></div>
+        </div>
+        <div class="container hero-bottom">
+          <div class="hero-bottom-label"><span class="status-dot"></span><span data-i18n="builtFor">Built for discovery</span></div>
+          <div class="discipline-list"><span data-i18n="chemistry">Chemistry</span><span class="separator">/</span><span data-i18n="biology">Life sciences</span><span class="separator">/</span><span data-i18n="physics">Physics</span><span class="separator">/</span><span data-i18n="earth">Earth science</span></div>
+          <a class="scroll-link" href="#overview"><span data-i18n="scroll">Scroll to explore</span><span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section class="section overview container" id="overview" aria-labelledby="overview-title">
+        <div class="section-kicker reveal"><span>01 / OVERVIEW</span><span class="section-rule"></span><span data-i18n="overviewFocus">SCIENTIFIC INTELLIGENCE</span></div>
+        <div class="overview-heading reveal">
+          <h2 id="overview-title"><span data-i18n="overviewLine1">Explore science.</span><br /><span class="subtle-text" data-i18n="overviewLine2">Understand the evidence.</span></h2>
+        </div>
+        <div class="capabilities">
+          <article class="capability reveal">
+            <div class="capability-visual vision-visual" aria-hidden="true"><div class="scan-frame"><span></span><span></span><span></span><span></span><div class="scan-line"></div><svg viewBox="0 0 200 100"><path d="M5 66h22l14-30 17 49 20-67 20 54 12-27 15 14h21l15-32 18 45h16"/></svg><div class="scan-label">FIG. 01 / PERCEPTION</div></div></div>
+            <div class="capability-heading"><span class="mono">01</span><h3 data-i18n="capability1Title">Understand scientific images</h3></div>
+            <p data-i18n="capability1Description">Connect scientific images and language to explore molecular structures, experimental charts and the microscopic world.</p>
+            <span class="capability-tag" data-i18n="capability1Tag">SCIENTIFIC UNDERSTANDING</span>
+          </article>
+          <article class="capability reveal">
+            <div class="capability-visual reasoning-visual" aria-hidden="true"><svg viewBox="0 0 240 140"><path class="network-line" d="M30 70 90 30 150 70 210 30M30 70 90 110 150 70 210 110M90 30v80M150 70h60"/><g class="network-nodes"><circle cx="30" cy="70" r="6"/><circle cx="90" cy="30" r="5"/><circle cx="90" cy="110" r="5"/><circle cx="150" cy="70" r="8"/><circle cx="210" cy="30" r="5"/><circle cx="210" cy="70" r="5"/><circle cx="210" cy="110" r="5"/></g><circle class="network-pulse" cx="150" cy="70" r="18"/></svg></div>
+            <div class="capability-heading"><span class="mono">02</span><h3 data-i18n="capability2Title">Connect knowledge and vision</h3></div>
+            <p data-i18n="capability2Description">Combine specialist knowledge with visual clues to support the analysis and explanation of scientific questions across disciplines.</p>
+            <span class="capability-tag" data-i18n="capability2Tag">CROSS-DISCIPLINARY ANALYSIS</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section benchmarks" id="benchmarks" aria-labelledby="benchmarks-title">
+        <div class="container">
+          <div class="section-kicker reveal"><span>02 / BENCHMARKS</span><span class="section-rule"></span><span data-i18n="measured">MEASURED, NOT ASSUMED</span></div>
+          <div class="section-heading reveal"><div><h2 id="benchmarks-title" data-i18n="benchmarksTitle">Capability, measured.</h2><p class="section-description" data-i18n="benchmarksDescription">Selected science and general understanding benchmarks. Choose one to compare the same configuration with every external baseline.</p></div><a class="text-link" id="results-source" target="_blank" rel="noopener noreferrer"><span data-i18n="sourceRecords">Full benchmark results</span><span aria-hidden="true">↗</span></a></div>
+          <div class="benchmark-panel reveal">
+            <div class="benchmark-picker">
+              <p class="benchmark-picker-label" data-i18n="selectedBenchmarks">SELECTED BENCHMARKS</p>
+              <div id="benchmark-tabs" class="benchmark-options" role="group" aria-label="Choose a benchmark" data-i18n-aria="benchmarkFilters"></div>
+              <p class="benchmark-picker-hint" data-i18n="benchmarkHint">Select a benchmark to compare models.</p>
+            </div>
+            <figure class="benchmark-chart is-paused" id="benchmark-chart" aria-labelledby="benchmark-chart-title">
+              <figcaption class="benchmark-chart-heading">
+                <div><p class="chart-eyebrow" id="benchmark-chart-domain"></p><h3 id="benchmark-chart-title"></h3></div>
+                <div class="benchmark-difference"><span class="difference-value" id="benchmark-difference"></span><span class="difference-label" id="benchmark-reference"></span></div>
+              </figcaption>
+              <div class="chart-scale-label" data-i18n="chartScale">BENCHMARK SCORE · HIGHER IS BETTER</div>
+              <div class="chart-axis" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+              <ul class="benchmark-bars" id="benchmark-bars"></ul>
+              <span class="sr-only" id="benchmark-announcement" role="status"></span>
+            </figure>
+          </div>
+          <details class="comparison-notes reveal"><summary data-i18n="comparisonNotes">Evaluation notes</summary><ul id="comparison-notes"></ul></details>
+        </div>
+      </section>
+
+      <section class="section demos container" id="demos" aria-labelledby="demos-title">
+        <div class="section-kicker reveal"><span>03 / EXPLORATIONS</span><span class="section-rule"></span><span data-i18n="questions">FROM EVALUATION TO EVIDENCE</span></div>
+        <div class="section-heading reveal"><div><h2 id="demos-title"><span data-i18n="demosLine1">Follow the details.</span><br /><span class="subtle-text" data-i18n="demosLine2">Watch the answer emerge.</span></h2><p class="section-description" data-i18n="demosDescription">Explore Innovator’s multimodal capabilities across scientific understanding and visual reasoning.</p></div><span class="preview-label"><span class="tiny-cross">+</span><span data-i18n="examplePreviews">8 CASES · VISUAL STORIES</span></span></div>
+        <div class="selection-summary reveal" id="selection-summary"></div>
+        <div class="demo-filters reveal" id="demo-filters" role="group" aria-label="Case categories" data-i18n-aria="demoFilters"></div>
+        <div class="case-workbench">
+          <div class="case-picker" id="case-picker" role="group" aria-label="Choose an evaluation example" data-i18n-aria="casePicker"></div>
+          <article class="case-viewer is-paused" id="case-viewer" aria-labelledby="case-title"></article>
+        </div>
+        <p class="sr-only" id="case-announcement" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer container"><div><a class="brand footer-brand" href="#">INNOVATOR<span class="brand-dot">.</span></a><p>Intelligence for scientific discovery.</p></div><div class="footer-right"><a href="#benchmarks" data-i18n="navBenchmarks">Benchmarks</a><a href="#demos" data-i18n="navDemos">Recorded cases</a><span>© <span id="year"></span> Innovator</span></div></footer>
+
+    <dialog id="demo-dialog" class="image-dialog" aria-labelledby="dialog-title"><div class="dialog-topbar"><h2 id="dialog-title" data-i18n="originalImage">Original evaluation image</h2><button id="dialog-close" class="icon-button" type="button" aria-label="Close image" data-i18n-aria="closePreview" autofocus>×</button></div><div id="dialog-image-picker" class="dialog-image-picker" role="group" aria-label="Choose an original evaluation image" data-i18n-aria="chooseOriginalImage" hidden></div><img id="dialog-image" alt="" /></dialog>
+    <noscript><div class="noscript-note">Enable JavaScript to view the particle animation, benchmark results and recorded evaluation examples.</div></noscript>
+  </body>
+</html>
